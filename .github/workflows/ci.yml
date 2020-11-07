@@ -30,7 +30,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Terraform security scan one correct
-        uses: triat/terraform-security-scan@18-allow-multiple-directories
+        uses: triat/terraform-security-scan@master
         with:
           tfsec_actions_working_dir: 'example/correct'
         env:
@@ -42,6 +42,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Terraform security scan no dir
-        uses: triat/terraform-security-scan@18-allow-multiple-directories
+        uses: triat/terraform-security-scan@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
