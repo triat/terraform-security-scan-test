@@ -12,7 +12,7 @@ on:
 
 jobs:
   tfsec_master:
-    name: tfsec_master
+    name: tfsec_master_one_dir_correct
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,7 +20,7 @@ jobs:
       - name: Terraform security scan master
         uses: triat/terraform-security-scan@master
         with:
-          tfsec_actions_working_dir: 'example/wrong'
+          tfsec_actions_working_dir: 'example/correct'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   tfsec_multiple_dir_wrong:
@@ -29,7 +29,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Terraform security scan wrong
+      - name: Terraform security scan multi wrong
         uses: triat/terraform-security-scan@18-allow-multiple-directories
         with:
           tfsec_actions_working_dir: 'example/wrong example/wrong2'
@@ -41,7 +41,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Terraform security scan
+      - name: Terraform security scan multi correct
         uses: triat/terraform-security-scan@18-allow-multiple-directories
         with:
           tfsec_actions_working_dir: 'example/correct example/correct2'
@@ -53,7 +53,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Terraform security scan
+      - name: Terraform security scan one correct
         uses: triat/terraform-security-scan@18-allow-multiple-directories
         with:
           tfsec_actions_working_dir: 'example/correct'
@@ -65,7 +65,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Terraform security scan
+      - name: Terraform security scan no dir
         uses: triat/terraform-security-scan@18-allow-multiple-directories
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
