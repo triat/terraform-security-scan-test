@@ -11,6 +11,18 @@ on:
     branches: [ main ]
 
 jobs:
+  tfsec_master:
+    name: tfsec_master
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Terraform security scan master
+        uses: triat/terraform-security-scan@master
+        with:
+          tfsec_actions_working_dir: 'example/wrong'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   tfsec_multiple_dir_wrong:
     name: tfsec_multiple_dir_wrong
     runs-on: ubuntu-latest
