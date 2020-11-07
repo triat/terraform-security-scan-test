@@ -17,9 +17,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Terraform security scan wrong
+        uses: triat/terraform-security-scan@18-allow-multiple-directories
+        with:
+          tfsec_actions_working_dir: wrong wrong2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Terraform security scan
         uses: triat/terraform-security-scan@18-allow-multiple-directories
         with:
-          tfsec_actions_working_dir: wrong correct
+          tfsec_actions_working_dir: correct correct2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
